@@ -36,7 +36,9 @@ if tostring(...) == "Channel" then
     end
   end
 else
-  local tpath = string.sub(..., 7, -1)
+  -- get the full path (used for love.thread.newThread())
+  local a, _ = string.find(..., "lurker", 0)
+  local tpath = string.sub(..., 0, a - 1):gsub("\\", "/"):gsub("(%a)%.(%a-)", "%1/%2")
 
   local lume = lume or require "lume"
 
